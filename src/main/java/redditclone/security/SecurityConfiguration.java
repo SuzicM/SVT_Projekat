@@ -24,6 +24,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+
+    @Override
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return super.userDetailsService();
+    }
+
+
     @Autowired
     public void configureAuthentication(
             AuthenticationManagerBuilder authenticationManagerBuilder)
@@ -37,6 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean
     @Override
@@ -54,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception{
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.headers().cacheControl().disable();
         httpSecurity.cors();
         httpSecurity.headers().frameOptions().disable();
@@ -63,10 +72,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                
-                .antMatchers(HttpMethod.GET, "api/user/").permitAll()
 
-
+                .antMatchers(HttpMethod.GET, "/api/user/").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/getAll/").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/register/").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/{id}/").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/login/").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

@@ -1,10 +1,7 @@
 package redditclone.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,7 +17,7 @@ public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "community_id", unique = true, nullable = false)
-    private Long community_id;
+    private Long id;
 
     @Column
     private String name;

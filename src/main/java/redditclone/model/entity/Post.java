@@ -1,11 +1,10 @@
 package redditclone.model.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 @Getter
 @Setter
@@ -18,7 +17,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", unique = true, nullable = false)
-    private Long post_id;
+    private Long id;
 
     @Column
     private String title;

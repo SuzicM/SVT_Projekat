@@ -1,6 +1,7 @@
 package redditclone.model.entity;
 
 import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,24 +11,25 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="reaction")
+@Table(name = "reaction")
 public class Reaction {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long reaction_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "reaction_type")
-	private ReactionType reaction_type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "reaction_type")
+    private ReactionType reaction_type;
 
-	@Column
-	private LocalDate time_stamp;
+    @Column
+    private LocalDate time_stamp;
 
-	@Column
-	private long voter_id;
+    @Column
+    private long voter_id;
 
-	@Column
-	private long post_id;
+    @Column
+    private long post_id;
+
 
 }

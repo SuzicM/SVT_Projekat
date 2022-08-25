@@ -1,9 +1,9 @@
 package redditclone.service;
 
-import redditclone.model.dto.CreateUserDTO;
-import redditclone.model.entity.User;
-
 import java.util.List;
+import redditclone.model.dto.CreateUserDTO;
+import redditclone.model.dto.UpdateUserDTO;
+import redditclone.model.entity.User;
 
 public interface UserService {
 
@@ -15,4 +15,11 @@ public interface UserService {
 
     User findByUsername(String username);
 
+    User changePassword(String newPassword, String username);
+
+    Boolean oldPasswordVerification(String oldPassword, String username);
+
+    User updateUser(UpdateUserDTO updateUserDTO, String username);
+
+    User findUserByUsername(String username);
 }

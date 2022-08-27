@@ -21,7 +21,6 @@ import redditclone.model.dto.UserTokenDTO;
 import redditclone.model.entity.User;
 import redditclone.security.TokenUtils;
 import redditclone.service.UserService;
-import redditclone.service.implementation.UserServiceImplementaion;
 
 @CrossOrigin
 @RestController
@@ -42,7 +41,7 @@ public class UserController {
 
     @PutMapping(value = "/{username}/", consumes = "application/json")
     public ResponseEntity<User> updateUser(@RequestBody UpdateUserDTO updateUserDTO, @PathVariable("username") String username) {
-        return new ResponseEntity<User>(userService.updateUser(updateUserDTO, username), HttpStatus.OK);
+        return new ResponseEntity<>(userService.updateUser(updateUserDTO, username), HttpStatus.OK);
     }
 
     @GetMapping(value = "/getAll/")
@@ -53,7 +52,7 @@ public class UserController {
     @PostMapping(value = "/register/", consumes = "application/json")
     public ResponseEntity<User> Register(@RequestBody CreateUserDTO userDTO) {
         User user = userService.createUser(userDTO);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}/")
@@ -91,7 +90,7 @@ public class UserController {
 
     @PostMapping(value = "oldPasswordVerification/{username}/")
     public ResponseEntity<Boolean> checkOldPassword(@RequestBody String password, @PathVariable("username") String username) {
-        return new ResponseEntity<Boolean>(userService.oldPasswordVerification(password, username), HttpStatus.OK);
+        return new ResponseEntity<>(userService.oldPasswordVerification(password, username), HttpStatus.OK);
     }
 
 }

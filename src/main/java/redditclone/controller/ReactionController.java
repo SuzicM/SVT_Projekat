@@ -26,7 +26,7 @@ public class ReactionController {
 
     @GetMapping(value = "/{post_id}/")
     public ResponseEntity<Integer> findKarma(@PathVariable("post_id") long post_id) {
-        return new ResponseEntity<Integer>(reactionService.getKarma(post_id), HttpStatus.OK);
+        return new ResponseEntity<>(reactionService.getKarma(post_id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/voter/{voter_id}/")
@@ -37,18 +37,18 @@ public class ReactionController {
 
     @GetMapping(value = "/", consumes = "application/json")
     public ResponseEntity<Boolean> hasReacted(@RequestBody ReactionDTO reactionDTO) {
-        return new ResponseEntity<Boolean>(reactionService.hasReacted(reactionDTO), HttpStatus.OK);
+        return new ResponseEntity<>(reactionService.hasReacted(reactionDTO), HttpStatus.OK);
     }
 
     @PutMapping(value = "/", consumes = "application/json")
     public ResponseEntity<Boolean> changeReaction(@RequestBody ReactionDTO reactionDTO) {
-        return new ResponseEntity<Boolean>(reactionService.changeReaction(reactionDTO), HttpStatus.OK);
+        return new ResponseEntity<>(reactionService.changeReaction(reactionDTO), HttpStatus.OK);
     }
 
 
     @PostMapping(value = "/", consumes = "application/json")
     public ResponseEntity<Reaction> saveReaction(@RequestBody ReactionDTO reactionDTO) {
         Reaction reaction = reactionService.createReaction(reactionDTO);
-        return new ResponseEntity<Reaction>(reaction, HttpStatus.CREATED);
+        return new ResponseEntity<>(reaction, HttpStatus.CREATED);
     }
 }

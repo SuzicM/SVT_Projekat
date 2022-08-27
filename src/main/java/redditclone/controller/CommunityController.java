@@ -27,19 +27,19 @@ public class CommunityController {
     @PostMapping(value = "/", consumes = "application/json")
     public ResponseEntity<Community> saveCommunity(@RequestBody CommunityDTO communityDTO) {
         Community newCommunity = communityService.createCommunity(communityDTO);
-        return new ResponseEntity<Community>(newCommunity, HttpStatus.CREATED);
+        return new ResponseEntity<>(newCommunity, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{name}/")
     public ResponseEntity<CommunityDTO> findCommunityByName(@PathVariable("name") String name) {
         CommunityDTO community = communityService.findCommunityByName(name);
-        return new ResponseEntity<CommunityDTO>(community, HttpStatus.OK);
+        return new ResponseEntity<>(community, HttpStatus.OK);
     }
 
 
     @PutMapping(value = "/{name}/", consumes = "application/json")
     public ResponseEntity<Community> updateCommunity(@RequestBody CommunityDTO community, @PathVariable("name") String oldName) {
-        return new ResponseEntity<Community>(communityService.updateCommunity(community, oldName), HttpStatus.OK);
+        return new ResponseEntity<>(communityService.updateCommunity(community, oldName), HttpStatus.OK);
     }
 
 }
